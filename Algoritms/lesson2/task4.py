@@ -1,10 +1,3 @@
-def sum(n):
-    sum = 0
-    for i in range(0, n):
-        sum += (-0.5)**i
-    return sum
-
-
 def sum_of_row(n):
     if n == 1:
         return 1

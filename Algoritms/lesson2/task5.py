@@ -1,12 +1,13 @@
 def output_list_asii(min, max):
     if max == min:
-        print(str(min) + " - " + chr(min), end = ' ')
+        print(f'{str(min)} - {chr(min)}', end=' ')
         return 1
-    count = output_list_asii(min, max-1)
-    if count%10 == 0:
+    count = output_list_asii(min, max - 1)
+    if count % 10 == 0:
         print('\n')
-    print(str(max) + ' - ' + chr(max), end = ' ')
-    return count+1
+    print(f'{str(max)} - {chr(max)}', end=' ')
+    return count + 1
+
 
 if __name__ == '__main__':
     min_range = int(input('Введите нижнюю границу диапазона: '))
