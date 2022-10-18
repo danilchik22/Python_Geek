@@ -10,9 +10,8 @@ def func_1(nums):
 
 
 def func_2(nums):
-    new_arr = [i for i in nums if i % 2 == 0]
+    new_arr = [nums.index(i) for i in nums if i % 2 == 0]
     return new_arr
-
 
 print(timeit("func_1", number=10000000, globals=globals()))
 print(timeit("func_2", number=10000000, globals=globals()))

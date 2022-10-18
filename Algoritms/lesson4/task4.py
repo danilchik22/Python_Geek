@@ -1,4 +1,5 @@
 import timeit
+from collections import Counter
 
 
 def time_of_work(func):
@@ -38,12 +39,8 @@ def func_2(array):
 
 @time_of_work
 def func_3(array):
-    numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    counts = []
-    for j in numbers:
-        counts.append([array.count(j)])
-    return f' Чаще всего встречается число {counts.index(max(counts))}, ' \
-           f'оно появилось в массиве {max(counts)} раза'
+    return f'Чаще всего встречается число  {max(Counter(array), key=Counter(array).get)}' \
+           f' Оно появилось в массиве {array.count(max(Counter(array), key=Counter(array).get))} раз(а)'
 
 
 array = [1, 3, 1, 3, 4, 5, 1]
@@ -51,5 +48,5 @@ print(func_1(array))
 print(func_2(array))
 print(func_3(array))
 
-# Решение в func3 будет эффективнее на большом массиве, потому что не нужно будет пробегать по всему массиву чисел,
-# вычисляя для каждого числа количество вхождений. Цифр всего 10 и достаточно для каждой цифры вычислить вхождение.
+# Встроенная функция Counter ищет число вхождений у каждого элемента, она работает быстрее, а потом уже
+# берем максимальное число вхождений из полученного словаря в результате функции Counter
