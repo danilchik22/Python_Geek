@@ -1,0 +1,50 @@
+Index: lesson9/task1.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import time\r\n\r\n\r\nclass TrafficLight:\r\n    def __init__(self, color):\r\n        self.__color = color\r\n        self.running()\r\n\r\n    def running(self):\r\n        while True:\r\n            if self.__color == \"красный\":\r\n                print(\"красный\")\r\n                time.sleep(7)\r\n                self.__color = \"жёлтый\"\r\n            elif self.__color == \"жёлтый\":\r\n                print(\"жёлтый\")\r\n                time.sleep(2)\r\n                self.__color = \"зелёный\"\r\n            elif self.__color == \"зелёный\":\r\n                print(\"зелёный\")\r\n                time.sleep(15)\r\n                self.__color = \"жёлтый\"\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    tr = TrafficLight(\"красный\")
+===================================================================
+diff --git a/lesson9/task1.py b/lesson9/task1.py
+--- a/lesson9/task1.py	
++++ b/lesson9/task1.py	
+@@ -1,4 +1,5 @@
+ import time
++import random
+ 
+ 
+ class TrafficLight:
+@@ -7,20 +8,28 @@
+         self.running()
+ 
+     def running(self):
++        previous = self.__color
+         while True:
+             if self.__color == "красный":
+-                print("красный")
++                print("\033[41m {}".format("красный"))
+                 time.sleep(7)
++                previous = "красный"
+                 self.__color = "жёлтый"
+             elif self.__color == "жёлтый":
+-                print("жёлтый")
++                print("\033[43m {}".format("желтый"))
+                 time.sleep(2)
+-                self.__color = "зелёный"
++                if previous == "красный":
++                    self.__color = "зелёный"
++                elif previous == "зеленый":
++                    self.__color = "красный"
++                elif previous == "жёлтый":
++                    self.__color = random.choice(["красный", "зелёный"])
+             elif self.__color == "зелёный":
+-                print("зелёный")
++                print("\033[42m {}".format("зеленый"))
+                 time.sleep(15)
++                previous = "зеленый"
+                 self.__color = "жёлтый"
+ 
+ 
+ if __name__ == "__main__":
+-    tr = TrafficLight("красный")
+\ No newline at end of file
++    tr = TrafficLight("жёлтый")
+\ No newline at end of file
